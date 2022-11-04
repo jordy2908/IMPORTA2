@@ -1,0 +1,225 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;  
+}
+
+.container {
+  width: 100%;
+}
+
+.blur {
+  backdrop-filter: blur(5px) brightness(95%);
+  margin: 1.5%;
+  box-shadow: 0px 3px 10px 1px rgba(150, 150, 150, 0.84);
+  margin-top: 2%;
+  animation: fade_in_show 0.5s
+}
+
+@keyframes fade_in_show {
+     0% {
+          opacity: 0;
+          transform: scale(0)
+     }
+
+     100% {
+          opacity: 1;
+          transform: scale(1)
+     }
+}
+a {
+  width: 100%;
+}
+
+.container-body{
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 100%;
+}
+
+.table-container {
+  width: 100%;
+  height: 400px;
+  padding: 10px;
+}
+
+.descripcion{
+  overflow-y: auto;
+  height: 100px;
+  padding: 8px;
+}
+
+table {
+  width: 100%;
+  border: 1px solid rgb(251, 251, 251);
+  color: rgb(49, 48, 48);
+  border-radius: 5px;
+}
+
+th, td {
+  overflow-y: auto;
+  text-align: center;
+  padding: 8px;
+  
+}
+
+th, td:hover {
+  color: #fb1616;
+}
+
+th {
+  color: #fb1616;
+}
+
+tr{
+  background-color: #f2f2f200
+}
+
+.descripcion::-webkit-scrollbar, .table-container::-webkit-scrollbar {
+  display: none;
+ }
+
+ .buscador input[type=text]{
+  margin-left: 60%;
+  margin-top: 3px;
+  width:25%;
+  height:35px;
+  border-radius:25px;
+  border-width: 2px;
+  transition: all .2s;
+  padding: 5px 15px;
+}
+    
+.buscador{
+  float:right;
+  margin-top: 7%;
+}
+    
+.buscador button{
+  background-color: #fb1616;
+  color: #f2f2f200;
+  float: right;
+  padding: 5px 10px;
+  margin-right: 2%;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 11%;
+  margin-top: 4px;
+}
+
+.container-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  height: 10%;
+  z-index: 1;
+}
+
+.logo {
+  width: 100%;
+}
+
+img {
+  width: 25%;
+  margin-top: 0%;
+}
+
+.buttons-login {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  width: 70%;
+  height: 100%;
+  margin-inline: 1%;
+}
+
+.buttons-login > button {
+  width: 42%;
+  height: 35%;
+  border-radius: 5px;
+  background-color: #e11414;
+  cursor: pointer;
+  color: #f2f2f2;
+  transition: all .2s;
+  margin-inline: 1%;
+}
+
+.buttons-login > button:hover {
+  background-color: #ff1111;
+}
+
+.section-cont {
+  height: 100vh;
+  background: url('https://importaapp.com/wp-content/uploads/2022/02/Vector_2646-scaled-e1645404447654.jpg?id=9662') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: absolute;
+  width: 100vw;
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 500px) {
+  form > input[type=text] {
+    padding-left: 10px;
+  }
+
+  img {
+    min-width: 12rem;
+    margin-top: 2%;
+  }  
+
+  .buttons-login > button {
+    width: 53%;
+  }
+}
+
+/* @media screen and (min-width: 501px) and (max-width: 912px) {
+  img {
+    width: calc(70% - 5%);
+    margin: 2%;
+  }  
+} */
+
+@media screen and (min-width: 501px) and (max-width: 1200px) {
+  img {
+    min-width: 14rem;
+    margin: 2%;
+  }  
+}
+
+@media screen and (max-width: 720px) {
+  .container{
+    width: 100%;
+  }
+
+  .table-container{
+    margin: 0;
+    padding: 2%;
+  }
+
+  .blur{
+    width: 100%;
+    padding: 2%;
+  }
+}
+
+
+@media screen and (min-width: 720px){
+  .buttons-login > button{
+    margin-left: 47;
+  }
+
+  td > a > img.pdf {
+    min-width: 30px;
+  }
+
+  
+}

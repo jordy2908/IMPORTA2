@@ -1,0 +1,236 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;   
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;  
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background: url('/img/vuexy-login-bg.jpg');
+  flex-direction: column;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+
+.container-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 10%;
+}
+
+.logo {
+  width: 100%;
+}
+
+img {
+  width: 25%;
+  margin: 2%;
+}
+
+.buttons-login {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 61%;
+}
+
+.buttons-login > button {
+  width: 42%;
+  height: 35%;
+  border-radius: 5px;
+  background-color: #e11414;
+  cursor: pointer;
+  color: #f2f2f2;
+  transition: all .2s;
+}
+
+.buttons-login > button:hover {
+  background-color: #ff1111;
+}
+
+
+
+
+.table-container {
+  margin: 2.5% 1.5%;
+
+  height: 400px;
+}
+
+.descripcion{
+  overflow-y: auto;
+  height: 100px;
+  padding: 8px;
+}
+
+table {
+  width: 100%;
+  border: 1px solid rgb(251, 251, 251);
+  color: rgb(4, 4, 4);
+  border-radius: 5px;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+table td, table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table tr:nth-child(even){background-color: #f2f2f2;}
+
+table tr:hover {background-color: #ddd;}
+
+table th {
+  position: -webkit-sticky; 
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #04AA6D;
+  color: white;
+}
+
+th, td {
+  overflow-y: auto;
+  text-align: center;
+  padding: 8px;
+  
+}
+
+th, td:hover {
+  color: #fb1616;
+}
+
+th {
+  color: #fb1616;
+}
+
+tr{
+  background-color: #f2f2f200
+}
+
+.descripcion::-webkit-scrollbar, .table-container::-webkit-scrollbar {
+  display: none;
+}
+
+.tabcontent {
+  display: none;
+}
+
+.cont-b {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons-body {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: 0 7px 10px 1px rgba(255, 1, 1, 0.138);
+  margin-top: 3%;
+}
+
+.buttons-body > button {
+  width: 50%;
+  height: 40px;
+  margin-inline-end: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all .2s;
+  background-color: #ffffff;
+  margin: 1%;
+}
+
+.buttons-body > button:hover {
+  background: #e11414;
+  color: aliceblue;
+}
+
+.buttons-body > button:focus {
+  background: #e11414;
+  color: aliceblue;
+
+}
+
+#body2 {
+  justify-content: center;
+}
+
+.grafic {
+  width: 100%;
+  height: 80%;
+  overflow-y:scroll;
+  margin-inline: 1%;
+}
+
+.usuarios {
+  width: 100%;
+  height: 80%;
+  overflow-y:scroll;
+  margin-inline: 1%;
+}
+
+.graficos {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin: 2%;
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 500px) {
+  form > input[type=text] {
+    padding-left: 10px;
+  }
+
+  img {
+    min-width: 12rem;
+    margin-top: 2%;
+  }  
+
+  .buttons-login > button {
+    width: 53%;
+    margin: 0%;
+  }
+}
+
+/* @media screen and (min-width: 501px) and (max-width: 912px) {
+  img {
+    width: calc(70% - 5%);
+    margin: 2%;
+  }  
+} */
+
+@media screen and (min-width: 501px) and (max-width: 1200px) {
+  img {
+    min-width: 14rem;
+    margin: 2%;
+  }  
+}
+
+@media screen and (max-width: 720px) {
+  .buttons-body {
+    width: 80%;
+  }
+
+  .body-admin{
+    margin-top: 10%;
+  } 
+}

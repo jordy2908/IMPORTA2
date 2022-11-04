@@ -1,0 +1,29 @@
+.login {
+    height: 80%;
+    padding: 1.5% 0 1.5% 0;
+}
+
+.body-login {
+    overflow-y: auto;
+}
+
+.body-login > form > button {
+    padding: 1% 0;
+}
+
+.pagos { 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+}
+
+
+.pago > .visa, .pago2 > .pay {
+    margin-inline: 5px;
+}
+
+.mail > p {
+    text-align: center;
+}  
