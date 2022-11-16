@@ -70,6 +70,8 @@
                 <button class="tablinks" onclick="openDiv(event, 'body1')">TABLA</button>
                 
                 <button class="tablinks" onclick="openDiv(event, 'body2')">DASHBOARD</button>
+
+                <button class="tablinks"> <a href="{{ route('csv') }}">Exportar usuarios</a> </button>
             </div>
         </div>
         <form action="/admin/all" method="post" id="form1">

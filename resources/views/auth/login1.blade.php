@@ -15,17 +15,15 @@
                 @csrf
                     <div class="mail">
                         <p>CORREO</p>
-                        <input type="email" name="email" id="email" placeholder="EMAIL">
+                        <input type="email" name="email" id="email" placeholder="Correo">
                     </div>
                     <div class="pass">
                         <p>CONTRASEÑA</p>
-                        <input type="password" name="password" id="password" placeholder="PASSWORD">
+                        <input type="password" name="password" id="password" placeholder="Contraseña">
                     </div>
-                    @error('message')
-                        <div class="error">
-                        Correo o contraseña erronea. Vuelve a intentarlo!
-                        </div>
-                    @enderror
+                    @if ($errors->any())
+                        <p style="min-width: 50%; max-width: 50%; color: #e5172a" >Credenciales inválidas. Vuelve a intentarlo!</p>
+                    @endif
                     <button type="submit">Iniciar sesion</button>
                 </form>
             </div>

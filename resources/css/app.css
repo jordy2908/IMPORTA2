@@ -1,3 +1,7 @@
+.bg-importa {
+    background-color: #fe4c1c !important;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

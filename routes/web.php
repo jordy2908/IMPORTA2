@@ -27,12 +27,18 @@ Route::get('/login', [\App\Http\Controllers\SessionsController::class, 'create']
 Route::post('/login', [\App\Http\Controllers\SessionsController::class, 'login']) -> name('login.login');
 Route::get('/logout', [\App\Http\Controllers\SessionsController::class, 'destroy']) -> name('login.destroy');
 
-Route::post('/register', [\App\Http\Controllers\RegisterController::class, 'register']) -> name('register.create');
+Route::post('/register', [\App\Http\Controllers\RegisterController::class, 'register']) -> name('register');
 Route::get('/register', [\App\Http\Controllers\RegisterController::class, 'create']) -> name('register.index');
 
 Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index']) -> middleware('admin.auth') -> name('admin.index');
 Route::post('/admin/all', [\App\Http\Controllers\AdminController::class, 'all']) -> middleware('admin.auth') -> name('admin.all');
 Route::post('/admin/users', [\App\Http\Controllers\AdminController::class, 'users']) -> middleware('admin.auth') -> name('admin.alll');
 
+Route::get('/result', [\App\Http\Controllers\result::class, 'result']) -> name('Pay');
+Route::post('/result', [\App\Http\Controllers\result::class, 'result']) -> name('Pay');
+Route::get('/result1', [\App\Http\Controllers\result::class, 'result1']) -> name('Pay1');
+Route::post('/result1', [\App\Http\Controllers\result::class, 'result1']) -> name('Pay1');
 
+Route::get('/csv', [\App\Http\Controllers\get_all::class, 'csv']) -> name('csv');
+Route::get('/id', [\App\Http\Controllers\get_all::class, 'get_id']) -> name('get_id');
 require __DIR__.'/auth.php';

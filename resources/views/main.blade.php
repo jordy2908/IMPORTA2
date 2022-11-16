@@ -26,7 +26,7 @@
                 <!-- <th>PROVEEDOR</th> -->
             </tr>
             @if (auth() -> check())
-                @if (auth() -> user() -> pago == 'PAYPAL' || auth() -> user() -> pago == 'VISA')
+                @if (auth() -> user() -> pago == 'VISA' && auth() -> user() -> contador > 0)
                     @foreach ($buscador as $c)
                     <tr>
                         <!-- <td> {{ $c -> ruc }} </td>
@@ -118,4 +118,173 @@
                 @endforeach
             @endif
     </table>
+</div>
+
+<div class="responsiv" style="overflow-y: auto;" id="table3">
+    @if (auth() -> check())
+        @if (auth() -> user() -> pago == 'VISA' && auth() -> user() -> contador > 0)
+            @foreach ($buscador as $c)
+                <div class="info-contenedor" style="display: flex; flex-direction:column;">
+
+                    <div class="titulo-info" style="display: flex; flex-direction:row; border-bottom: 1px solid aliceblue; padding: 2% 0 2% 0;">
+                        <p ><b>Pais de procedencia: </b></p>
+                        <p style="width: 100%;
+                            align-items: center;
+                            display: flex;
+                            justify-content: center;">{{$c -> pais_procedencia}}</p>
+                        <a style="width: 20%;" href="{{ route('home.pdf', $c -> id) }}">
+                            <img style="min-width: 2rem;" src="img/pdf.png" ></img>
+                        </a>
+
+                    </div>
+                    <div class="cuerpo-info">
+                        <div style="display: flex; flex-direction:row; border-bottom: 1px solid aliceblue; padding: 2% 0 2% 0;">
+                            <p ><b>Descripcion comercial:</b></p>
+                            <p style="width: 100%;
+                                align-items: center;
+                                display: flex;
+                                justify-content: center;" > <div class="descripcion"> {{$c -> descripcion_despacho}}</div></p>
+                        </div>
+
+                        <details>
+                            <summary>Ver mas</summary>
+
+                            <div style="display: flex; flex-direction:row; border-bottom: 1px solid aliceblue; padding: 2% 0 2% 0;">
+                                <p ><b>Presentacion:</b></p>
+                                <p style="width: 100%;
+                                    align-items: center;
+                                    display: flex;
+                                    justify-content: center;" >{{$c -> tipo_unidades}}</p>
+                            </div>
+
+                            <div style="display: flex; flex-direction:row; border-bottom: 1px solid aliceblue; padding: 2% 0 2% 0;">
+                                <p ><b>Precio unitario en origen:</b></p>
+                                <p style="width: 100%;
+                                    align-items: center;
+                                    display: flex;
+                                    justify-content: center;" >${{$c -> cif_u}}</p>
+                            </div>
+
+                            <div style="display: flex; flex-direction:row; border-bottom: 1px solid aliceblue; padding: 2% 0 2% 0;">
+                                <p ><b>Posicion arancelaria:</b></p>
+                                <p style="width: 100%;
+                                    align-items: center;
+                                    display: flex;
+                                    justify-content: center;" >{{$c -> posicion_arancelaria}}</p>
+                            </div>
+                            <p> <a href="{{ route('home.get', $c -> id) }}"><b>Proveedor:</b> {{$c -> proveedor}}</a> </p>
+                            <p class="pago"><b>Precio unitario en Ecuador:</b> ${{$c -> fob_u}}</p>
+                            <p> <b>Unidades:</b> ${{$c -> unidades}}</p>  
+                        </details>              
+                    </div>
+                </div>
+            @endforeach
+        @else
+            @foreach ($buscador as $c)
+            <div class="info-contenedor" style="display: flex; flex-direction:column;">
+
+                <div class="titulo-info" style="display: flex; flex-direction:row; border-bottom: 1px solid aliceblue; padding: 2% 0 2% 0;">
+                    <p ><b>Pais de procedencia: </b></p>
+                    <p style="width: 100%;
+                        align-items: center;
+                        display: flex;
+                        justify-content: center;">{{$c -> pais_procedencia}}</p>
+                </div>
+                <div class="cuerpo-info">
+                    <div style="display: flex; flex-direction:row; border-bottom: 1px solid aliceblue; padding: 2% 0 2% 0;">
+                        <p ><b>Descripcion comercial:</b></p>
+                        <p style="width: 100%;
+                            align-items: center;
+                            display: flex;
+                            justify-content: center;" > <div class="descripcion"> {{$c -> descripcion_despacho}}</div></p>
+                    </div>
+
+                    <details>
+                        <summary>Ver mas</summary>
+
+                        <div style="display: flex; flex-direction:row; border-bottom: 1px solid aliceblue; padding: 2% 0 2% 0;">
+                            <p ><b>Presentacion:</b></p>
+                            <p style="width: 100%;
+                                align-items: center;
+                                display: flex;
+                                justify-content: center;" >{{$c -> tipo_unidades}}</p>
+                        </div>
+
+                        <div style="display: flex; flex-direction:row; border-bottom: 1px solid aliceblue; padding: 2% 0 2% 0;">
+                            <p ><b>Precio unitario en origen:</b></p>
+                            <p style="width: 100%;
+                                align-items: center;
+                                display: flex;
+                                justify-content: center;" >${{$c -> cif_u}}</p>
+                        </div>
+
+                        <div style="display: flex; flex-direction:row; border-bottom: 1px solid aliceblue; padding: 2% 0 2% 0;">
+                            <p ><b>Posicion arancelaria:</b></p>
+                            <p style="width: 100%;
+                                align-items: center;
+                                display: flex;
+                                justify-content: center;" >xxx.xx.xx.xx</p>
+                        </div>
+                        <p> <a href="{{ route('home.get', $c -> id) }}"><b>Proveedor:</b> xxx.xx.xx.xx</a> </p>
+                        <p class="pago"><b>Precio unitario en Ecuador:</b> xxx.xx.xx.xx</p>
+                        <p> <b>Unidades:</b> xxx.xx.xx.xx</p>  
+                    </details>              
+                </div>
+            </div>
+            @endforeach
+        @endif
+    @else
+        @foreach ($buscador as $c)
+        <div class="info-contenedor" style="display: flex; flex-direction:column;">
+
+            <div class="titulo-info" style="display: flex; flex-direction:row; border-bottom: 1px solid aliceblue; padding: 2% 0 2% 0;">
+                <p ><b>Pais de procedencia: </b></p>
+                <p style="width: 100%;
+                    align-items: center;
+                    display: flex;
+                    justify-content: center;">{{$c -> pais_procedencia}}</p>
+            </div>
+            <div class="cuerpo-info">
+                <div style="display: flex; flex-direction:row; border-bottom: 1px solid aliceblue; padding: 2% 0 2% 0;">
+                    <p ><b>Descripcion comercial:</b></p>
+                    <p style="width: 100%;
+                        align-items: center;
+                        display: flex;
+                        justify-content: center;" > <div class="descripcion"> {{$c -> descripcion_despacho}}</div></p>
+                </div>
+
+                <details>
+                    <summary>Ver mas</summary>
+
+                    <div style="display: flex; flex-direction:row; border-bottom: 1px solid aliceblue; padding: 2% 0 2% 0;">
+                        <p ><b>Presentacion:</b></p>
+                        <p style="width: 100%;
+                            align-items: center;
+                            display: flex;
+                            justify-content: center;" >{{$c -> tipo_unidades}}</p>
+                    </div>
+
+                    <div style="display: flex; flex-direction:row; border-bottom: 1px solid aliceblue; padding: 2% 0 2% 0;">
+                        <p ><b>Precio unitario en origen:</b></p>
+                        <p style="width: 100%;
+                            align-items: center;
+                            display: flex;
+                            justify-content: center;" >${{$c -> cif_u}}</p>
+                    </div>
+
+                    <div style="display: flex; flex-direction:row; border-bottom: 1px solid aliceblue; padding: 2% 0 2% 0;">
+                        <p ><b>Posicion arancelaria:</b></p>
+                        <p style="width: 100%;
+                            align-items: center;
+                            display: flex;
+                            justify-content: center;" >xxx.xx.xx.xx</p>
+                    </div>
+                    <p> <a href="{{ route('home.get', $c -> id) }}"><b>Proveedor:</b> xxx.xx.xx.xx</a> </p>
+                    <p class="pago"><b>Precio unitario en Ecuador:</b> xxx.xx.xx.xx</p>
+                    <p> <b>Unidades:</b> xxx.xx.xx.xx</p>  
+                </details>              
+            </div>
+        </div>
+        @endforeach
+    @endif
 </div>

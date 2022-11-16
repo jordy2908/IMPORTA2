@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\count;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -39,7 +41,7 @@ class RegisteredUserController extends Controller
             'cedula'    => ['required', 'string', 'max:255'],
             'pago'      => ['required', 'string', 'max:255'],
             'busqueda'  => ['required', 'string', 'max:255'],
-            'password'  => ['required', 'confirmed', Rules\Password::defaults()],
+            'password'  => ['required', Password::min(8) ->mixedCase() ->numbers() ->symbols(), 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
@@ -50,6 +52,13 @@ class RegisteredUserController extends Controller
             'busqueda'  => $request -> busqueda,
             'password'  => Hash::make($request->password),
         ]);
+
+        $post = count::find(1);
+        $post->id_pagos = $post->id_pagos + 1;
+        $post->save();        
+        
+        count::find(1) -> increment("ig_pagos2");
+
 
         event(new Registered($user));
 

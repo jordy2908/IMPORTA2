@@ -4,6 +4,11 @@
   box-sizing: 0;  
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 .container {
   width: 100%;
 }
@@ -13,7 +18,8 @@
   margin: 1.5%;
   box-shadow: 0px 3px 10px 1px rgba(150, 150, 150, 0.84);
   margin-top: 2%;
-  animation: fade_in_show 0.5s
+  animation: fade_in_show 0.5s;
+  border-radius: 10px;
 }
 
 @keyframes fade_in_show {
@@ -164,6 +170,11 @@ img {
   width: 100vw;
 }
 
+.responsiv {
+  display: none;
+}
+
+
 /* RESPONSIVE */
 
 @media screen and (max-width: 500px) {
@@ -200,26 +211,66 @@ img {
     width: 100%;
   }
 
+  .container-home{
+    padding-top: 20%;
+  }
+
   .table-container{
     margin: 0;
     padding: 2%;
   }
 
   .blur{
-    width: 100%;
+    width: 95%;
     padding: 2%;
   }
+
+  .table-container {
+    display: none;
+  }
+
+  .responsiv {
+    display: block;
+    height: 73vh;
+  }
+
+  .info-contenedor {
+    width: 100%;
+    padding: 2%;
+    background-color: rgb(172, 172, 144);
+    border-radius: 5px;
+    margin: 2% 0 2% 0;
+    background-color: rgb(171 179 184);
+  }
+
+  details summary::marker {
+   display: none; 
+  }
+
+  details
+  {
+      transition: height 1s ease;
+      overflow: hidden;
+  }
+  
+  details:not([open])
+  {
+      height: 1.25em;
+  }
+  
+  details[open]
+  {
+      height: 15rem;
+  }  
+  summary {
+    text-align: center;
+  }
 }
+
 
 
 @media screen and (min-width: 720px){
   .buttons-login > button{
     margin-left: 47;
   }
-
-  td > a > img.pdf {
-    min-width: 30px;
-  }
-
-  
 }

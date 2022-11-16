@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use Barryvdh\DomPDF\Facade\Pdf as PDF;
- 
+use PDF;
 
 use Illuminate\Http\Request;
 use App\Models\concentrados;
+use App\Models\count;
+use App\Models\users;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
+use Illuminate\Support\Arr;
 
 use function Ramsey\Uuid\v1;
 
@@ -30,7 +34,7 @@ class get_all extends Controller
         //$c = concentrados::all();
         //return view('welcome', compact('c'));
         $buscarpor = $request -> get('buscarpor');
-        $buscador = concentrados::where('pais_procedencia', 'like', '%'.strtoupper($buscarpor).'%')->paginate($this::pag);
+        $buscador = concentrados::where('proveedor', 'like', '%'.strtoupper($buscarpor).'%')->paginate($this::pag);
         return view('main', compact('buscador', 'buscarpor'));
     }
 
@@ -38,7 +42,7 @@ class get_all extends Controller
         //$c = concentrados::all();
         //return view('welcome', compact('c'));
         $buscarpor = $request -> get('buscarpor');
-        $buscador = concentrados::where('pais_procedencia', 'like', '%'.strtoupper($buscarpor).'%')->paginate($this::pag);
+        $buscador = concentrados::where('posicion_arancelaria', 'like', '%'.strtoupper($buscarpor).'%')->paginate($this::pag);
         return view('main2', compact('buscador', 'buscarpor'));
     }
     
@@ -62,8 +66,61 @@ class get_all extends Controller
     }
 
     public function get_pdf (concentrados $proveedor ) {
-        // $b = concentrados::where('proveedor', 'like', '%'.$proveedor.'%');
-        // $r = PDF::loadView('details.details', compact('proveedor'));
-        // return $r -> stream('details.details.pdf');
+        $b = concentrados::where('proveedor', 'like', '%'.$proveedor.'%');
+        $r = FacadePdf::loadView('details.details', compact('proveedor'));
+        
+        return $r -> stream('details.details.pdf');
+    }
+
+    public function get_id(){
+        $id = count::all();
+        return $id;
+    }
+
+    public function csv() {
+    //Nombre del archivo que generaremos
+    $fileName = 'InvTransactionsInterface.csv';
+    //Arreglo que contendrá las filas de datos
+    $arrayDetalle = Array();
+
+    //Estos son los datos que recibimos del modelo que queremos leer, aquí ustedes cámbienlo por el modelo que necesiten
+    $items=users::all();
+
+    //El encabezado que le dice al explorador el tipo de archivo que estamos generando
+    $headers = array(
+                "Content-type"        => "text/csv",
+                "Content-Disposition" => "attachment; filename=$fileName",
+                "Pragma"              => "no-cache",
+                "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+                "Expires"             => "0"
+        );    
+
+    //recorremos los registros y con ellos llenamos nuestro arreglo arrayDetall
+    foreach ($items as $item){
+
+        $arrayDetalle[] = array('Name' => $item->name,
+                        'Email'  => $item->email,
+                        'Buscador'  => $item->busqueda
+                        );
+    }
+
+    //construyamos un arreglo para la información de las columnas
+    $columns = array('Name',
+                    'Email',
+                    'Buscador');
+    
+        $callback = function() use($arrayDetalle, $columns) {
+            $file = fopen('php://output', 'w');
+            //si no quieren que el csv muestre el titulo de columnas omitan la siguiente línea.
+            fputcsv($file, $columns);
+                    foreach ($arrayDetalle as $item) {
+                        fputcsv($file, $item);
+                    }
+                    fclose($file);
+                };
+        
+        //Esto hace que Laravel exponga el archivo como descarga
+        return response()->stream($callback, 200, $headers);            
+
     }
 };
